@@ -5,7 +5,7 @@ export type TProduct = {
   description: string
   imageUrl: string
 }
-export const products: TProduct[] = [
+export const productsMock: TProduct[] = [
   {
     id: "dd11499a-5d81-479f-91b7-3b220353671c",
     name: "japko",
@@ -30,6 +30,6 @@ export const products: TProduct[] = [
     id: "3ad72f2d-3d8c-4916-9db6-affbf1e5aa95",
     name: "kretki",
     description: 'szystkie kolory',
-    imageUrl: "https://media.istockphoto.com/id/509553224/pl/zdj%C4%99cie/kredki-si%C4%99-w-odizolowane-na-bia%C5%82e-t%C5%82o.jpg?s=612x612&w=0&k=20&c=QiExpxKUQL9osD8yIJL53XQ_me2W1HzP7NV6nKixOhQ=",
+    imageUrl: "https://a.allegroimg.com/original/1ec245/27b1380643dabf53a7a17871868e",
   }, 
 ]

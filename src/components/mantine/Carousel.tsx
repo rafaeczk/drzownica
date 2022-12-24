@@ -10,8 +10,6 @@ const useStyles = createStyles(({ colors, radius }) => ({
     backgroundColor: colors.gray[2],
     height: "100%",
     borderRadius: radius.lg,
-    display: "grid",
-    gridTemplateColumns: "3fr 2fr",
     overflow: "hidden",
   },
   carouselElLabel: {
@@ -50,8 +48,8 @@ export const Carousel: React.FC<CarouselProps> = ({ children }) => {
       loop
       dragFree
     >
-      {children.map((child) => (
-        <MCarousel.Slide>
+      {children.map((child, i) => (
+        <MCarousel.Slide key={i}>
           <div className={classes.carouselEl}>{child}</div>
         </MCarousel.Slide>
       ))}

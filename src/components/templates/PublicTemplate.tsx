@@ -1,4 +1,4 @@
-import { createStyles, Group, Text } from "@mantine/core"
+import { Breadcrumbs, createStyles, Group, Text } from "@mantine/core"
 import { useMediaQuery, useScrollLock } from "@mantine/hooks"
 import Image from "next/image"
 import { Link } from "src/components/mantine/Link"
@@ -6,6 +6,7 @@ import { Button } from "src/components/mantine/Button"
 import Logo from "resources/images/white-logo.png"
 import { CgMenuRight } from "react-icons/cg"
 import { RxCross2 } from "react-icons/rx"
+import { BiChevronsRight } from "react-icons/bi"
 import { useState } from "react"
 import { navigationConfig } from "app/config/navigation"
 import Head from "next/head"
@@ -76,8 +77,19 @@ export type PublicTemplateProps = {
     description?: string
   }
   activeLink?: string
+  notFound?: boolean
+  breadcrumb?: {
+    label: string
+    url: string
+  }[]
 }
-export const PublicTemplate: React.FC<PublicTemplateProps> = ({ children, document, activeLink }) => {
+export const PublicTemplate: React.FC<PublicTemplateProps> = ({
+  children,
+  document,
+  activeLink,
+  notFound = false,
+  breadcrumb,
+}) => {
   const [sideBarOpened, setSideBarOpened] = useState<boolean>(false)
 
   const {
@@ -90,9 +102,18 @@ export const PublicTemplate: React.FC<PublicTemplateProps> = ({ children, docume
     <>
       <Head>
         <title>{document.title}</title>
-        <meta name="description" content={document.description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content={document.description}
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
 
       <div className={classes.root}>
@@ -126,7 +147,33 @@ export const PublicTemplate: React.FC<PublicTemplateProps> = ({ children, docume
           )}
         </header>
 
-        <main className={classes.main}>{children}</main>
+        <main className={classes.main}>
+          {breadcrumb && (
+            <Breadcrumbs
+              sx={(theme) => ({
+                backgroundColor: theme.colors.gray[3],
+                padding: "6px 17px",
+                borderRadius: theme.radius.md,
+                marginBottom: theme.spacing.xl
+              })}
+              separator={<BiChevronsRight size={24} />}
+            >
+              {breadcrumb.map((el, i) => (
+                <Link
+                  key={i}
+                  to={el.url}
+                  color="dark"
+                  hoverUnderline
+                  size="sm"
+                  weight={600}
+                >
+                  {el.label}
+                </Link>
+              ))}
+            </Breadcrumbs>
+          )}
+          {notFound ? "Nie znaleziono zasobu" : children}
+        </main>
       </div>
 
       <div className={classes.sidebar}>

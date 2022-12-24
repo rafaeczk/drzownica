@@ -6,9 +6,12 @@ export type TNavigationElement = {
 export const navigationConfig: TNavigationElement[] = [
   {
     label: "Główna",
-    to: ".",
+    to: "/",
+  }, {
+    label: "Produkty",
+    to: "/products",
   }, {
     label: "Sklepy",
-    to: "shops",
+    to: "/shops",
   }
 ]
