@@ -10,8 +10,5 @@ export const navigationConfig: TNavigationElement[] = [
   }, {
     label: "Produkty",
     to: "/products",
-  }, {
-    label: "Sklepy",
-    to: "/shops",
-  }
+  },
 ]

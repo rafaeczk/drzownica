@@ -59,6 +59,7 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
         title: "Drzownica | Produkty",
       }}
       breadcrumb={breadcrumb}
+      activeLink="Produkty"
     >
       <div className={classes.grid}>
         {products.map((p) => (
